@@ -17,6 +17,7 @@ def create_file(url, find_patterns):
     filename = f'{gunname}_{skinname}_{wear}'
 
     with open(f'patterns_info/{filename}.txt', 'w') as file:
+        file.write(f'top1: 490, top2: 148 69 704\n')
         for tier, patterns in find_patterns.items():
             file.write(f'Тиер {tier}\n')
             for pattern, price_list in patterns.items():
@@ -77,6 +78,7 @@ def parsing(url):
 
         # Убеждаемся, что элементы подгрузились
         try:
+            print(f'Страница {page} Обрабатывается')
             WebDriverWait(driver, 60).until(
                 lambda d: len([s.text for s in d.find_elements(By.CLASS_NAME, "itemseed") if s.text != '']) == 100
             )
